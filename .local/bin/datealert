@@ -1,0 +1,2 @@
+#!/bin/sh
+dunstify -a datealert -u low -t 1500 -r 9999 "$(date +'%Y-%-m-%-d %^a')"

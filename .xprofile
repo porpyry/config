@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# compositor
+picom -b --animations --animation-for-open-window zoom --animation-stiffness 350 --animation-window-mass 0.5 &
+
+# touchpad
+xinput set-prop "SYNA309F:00 06CB:CD0B Touchpad" "libinput Tapping Enabled" 1 &
+
+feh --bg-fill --randomize ~/Wallpapers/* # background image
+xrandr --output eDP --set TearFree on &  # tear-free
+xsetroot -cursor_name left_ptr &         # mouse pointer
+xset r rate 180 30 &                     # repeat rate
+emacs --daemon &                         # emacs
+numlockx on &                            # numlock
+bspswallow &                             # swallow
+xsettingsd &                             # font render
+timealert &                              # timer every minute
+udiskie &                                # external storage
+sxhkd &                                  # keybind
+kime &                                   # hangul

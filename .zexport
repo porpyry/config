@@ -1,0 +1,15 @@
+#!/bin/sh
+
+export PATH=$HOME/.local/bin:$PATH
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
+export GTK_IM_MODULE=kime
+export QT_IM_MODULE=kime
+export XMODIFIERS=@im=kime
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export EDITOR=nvim

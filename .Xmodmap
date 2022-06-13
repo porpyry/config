@@ -1,0 +1,7 @@
+remove lock = Caps_Lock
+add control = Caps_Lock
+keycode 66 = Control_L NoSymbol Control_L
+
+remove mod1 = Alt_R
+add mod3 = Alt_R
+keycode 108 = Hangul

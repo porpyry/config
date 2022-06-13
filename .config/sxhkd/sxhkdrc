@@ -1,0 +1,157 @@
+#
+# wm independent hotkeys
+#
+
+# poweroff
+super + ctrl + shift + q
+	poweroff
+
+# reboot
+super + ctrl + shift + r
+	reboot
+
+# terminal emulator
+super + Return
+	alacritty
+
+# program launcher
+super + q
+	dmenu_run
+
+# background image
+super + b
+	feh --bg-fill --randomize ~/Wallpapers/*
+
+# browser
+super + n
+	brave --use-gl=desktop --enable-features=VaapiVideoDecoder --disable-features=UseChromeOSDirectVideoDecoder
+
+# browser (incognito)
+super + shift + n
+	brave --incognito
+
+# editor
+super + e
+	emacsclient -c -a ''
+
+# file manager
+super + shift + e
+	pcmanfm
+
+# Volume
+XF86AudioMute
+	changevolume mute
+
+XF86Audio{Lower,Raise}Volume
+	changevolume {down,up}
+
+# Brightness
+XF86MonBrightness{Down,Up}
+	xbacklight -{dec,inc} 5
+
+XF86Sleep
+	xset dpms force off
+
+# Alert
+super + {d,c,v}
+	{date,time,battery}alert
+
+# Wireless
+super + F11
+	alacritty -e nmtui-connect
+
+#
+# bspwm hotkeys
+#
+
+# quit bspwm
+super + ctrl + shift + e
+	bspc quit
+
+# restart bspwm & reload sxhkd
+super + Escape
+	bspc wm -r; \
+	pkill -USR1 -x sxhkd
+
+# close / kill
+super + {_,ctrl + shift +}w
+	bspc node -{c,k}
+
+super + shift + w
+	bspc node @brother -c
+
+# monocle
+super + m
+	bspc desktop -l next
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,y,g,f}
+	bspc node -t {\~tiled,\~pseudo_tiled,\~floating,\~fullscreen}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# swap brother
+super + grave
+	bspc node -s @brother
+
+# focus the node for the given path jump
+super + {backslash,bracketleft,bracketright}
+	bspc node -f @{parent,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }Tab
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {a,s}
+	bspc {node,desktop} -f last
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# rotate
+super + {_,ctrl + ,shift + }r
+	bspc node @parent -R {90,180,270}
+
+#
+# preselect
+#
+
+# preselect the direction
+super + alt + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+# cancel the preselection for the focused desktop
+super + alt + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + ctrl + {h,j,k,l}
+	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + ctrl + shift + {h,j,k,l}
+	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
