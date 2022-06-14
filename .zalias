@@ -26,5 +26,6 @@ alias pSs="paru -Ss"
 alias v=nvim
 alias sv="sudo nvim"
 alias c="tty-clock -tc"
+alias cb="xclip -selection clipboard"
 
 alias config="git --git-dir=$HOME/.git --work-tree=$HOME"
