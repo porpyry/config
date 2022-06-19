@@ -1,2 +1,3 @@
 #!/bin/sh
 dunstify -a timealert -u low -t 1500 -r 9999 "$(date +'%-I:%M %p')"
+echo "$(date +'%-I:%M %p')" | tr -d '\n' | xclip -selection clipboard

@@ -1,19 +1,45 @@
 #!/bin/sh
 
+
+### DAEMONS ###
+
 # compositor
-picom -b --animations --animation-for-open-window zoom --animation-stiffness 350 --animation-window-mass 0.5 &
+picom -b --animations --animation-for-open-window zoom --animation-stiffness 25 &
+
+# rendering
+systemctl --user start xsettingsd &
+
+# storage
+udiskie &
+
+# notification
+dunst &
+
+# hangul
+nimf &
+
+
+### COMMANDS ###
 
 # touchpad
 xinput set-prop "SYNA309F:00 06CB:CD0B Touchpad" "libinput Tapping Enabled" 1 &
 
-feh --bg-fill --randomize ~/Wallpapers/* # background image
-xrandr --output eDP --set TearFree on &  # tear-free
-systemctl --user start xsettingsd &      # rendering
-xsetroot -cursor_name left_ptr &         # mouse pointer
-xset r rate 180 30 &                     # repeat rate
-numlockx on &                            # numlock
-bspswallow &                             # swallow
-timealert &                              # timer every minute
-udiskie &                                # external storage
-sxhkd &                                  # keybind
-kime &                                   # hangul
+# background image
+feh --bg-fill --randomize ~/.wallpapers/* &
+
+# tear-free
+xrandr --output eDP --set TearFree on &
+
+# mouse pointer
+xsetroot -cursor_name left_ptr &
+
+# repeat rate
+xset r rate 180 30 &
+
+# numlock
+numlockx on &
+
+# alert
+datealert &
+timealert &
+batteryalert &

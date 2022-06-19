@@ -11,8 +11,8 @@ super + ctrl + shift + r
 	reboot
 
 # terminal emulator
-super + Return
-	alacritty
+super + {Return,@space}
+	{alacritty,alacritty}
 
 # program launcher
 super + q
@@ -20,7 +20,7 @@ super + q
 
 # background image
 super + b
-	feh --bg-fill --randomize ~/Wallpapers/*
+	feh --bg-fill --randomize ~/.wallpapers/*
 
 # browser
 super + n
@@ -39,26 +39,28 @@ super + shift + e
 	pcmanfm
 
 # Volume
-XF86AudioMute
-	changevolume mute
+XF86Audio{Mute,LowerVolume,RaiseVolume}
+	changevolume {mute,down,up}
 
-XF86Audio{Lower,Raise}Volume
-	changevolume {down,up}
-
-# Brightness
+# brightness
 XF86MonBrightness{Down,Up}
 	xbacklight -{dec,inc} 5
 
+# monitor off
 XF86Sleep
 	xset dpms force off
 
-# Alert
+# alert
 super + {d,c,v}
 	{date,time,battery}alert
 
-# Wireless
+# wireless
 super + F11
 	alacritty -e nmtui-connect
+
+# screenshot
+Print
+	flameshot gui
 
 #
 # bspwm hotkeys
@@ -77,6 +79,7 @@ super + Escape
 super + {_,ctrl + shift +}w
 	bspc node -{c,k}
 
+# close brother
 super + shift + w
 	bspc node @brother -c
 
@@ -92,41 +95,48 @@ super + m
 super + {t,y,g,f}
 	bspc node -t {\~tiled,\~pseudo_tiled,\~floating,\~fullscreen}
 
+super + shift + f
+	bspc node @brother -t \~fullscreen
+
 #
 # focus/swap
 #
 
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+# focus direction
+super + {_,shift + }{h,j,k,l,Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east,west,south,north,east}
+
+# focus cycle
+super + {_,shift + }Tab
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus last (node/desktop)
+super + {ctrl + Tab,s}
+	bspc {node,desktop} -f last
+
+# focus brother/parent
+super + {_,ctrl + }a
+	bspc node -f @{brother,parent}
 
 # swap brother
 super + grave
 	bspc node -s @brother
 
-# focus the node for the given path jump
-super + {backslash,bracketleft,bracketright}
-	bspc node -f @{parent,first,second}
-
-# focus the next/previous window in the current desktop
-super + {_,shift + }Tab
-	bspc node -f {next,prev}.local.!hidden.window
-
-# focus the next/previous desktop in the current monitor
-super + {Left,Right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {a,s}
-	bspc {node,desktop} -f last
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# move to uncle
+super + shift + a
+	bspc node -n @parent/brother
 
 # rotate
 super + {_,ctrl + ,shift + }r
 	bspc node @parent -R {90,180,270}
+
+#
+# desktop
+#
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
@@ -134,24 +144,28 @@ super + {_,ctrl + ,shift + }r
 
 # preselect the direction
 super + alt + {h,j,k,l}
-    bspc node -p {west,south,north,east}
+	bspc node -p {west,south,north,east}
 
 # cancel the preselection for the focused desktop
 super + alt + space
-    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
 #
 
-# expand a window by moving one of its side outward
+# resize right/bottom
 super + ctrl + {h,j,k,l}
 	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
 
-# contract a window by moving one of its side inward
+# resize left/top
 super + ctrl + shift + {h,j,k,l}
 	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
-# move a floating window
-super + {Left,Down,Up,Right}
+# floating window
+super + KP_{Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# balance/equailize
+super + {ctrl,shift} + b
+	bspc node @/ -{E,B}
