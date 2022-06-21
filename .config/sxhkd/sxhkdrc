@@ -12,7 +12,7 @@ super + ctrl + shift + r
 
 # terminal emulator
 super + {Return,@space}
-	{alacritty,alacritty}
+	{_,bspc rule -a \* -o state=floating &&} alacritty
 
 # program launcher
 super + q
@@ -56,7 +56,7 @@ super + {d,c,v}
 
 # wireless
 super + F11
-	alacritty -e nmtui-connect
+	bspc rule -a \* -o state=floating && alacritty -e nmtui-connect
 
 # screenshot
 Print
@@ -98,21 +98,28 @@ super + {t,y,g,f}
 super + shift + f
 	bspc node @brother -t \~fullscreen
 
+# pin
+super + p
+	bspc node -g sticky
+
 #
 # focus/swap
 #
 
 # focus direction
-super + {_,shift + }{h,j,k,l,Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east,west,south,north,east}
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
 
 # focus cycle
 super + {_,shift + }Tab
 	bspc node -f {next,prev}.local.!hidden.window
 
-# focus last (node/desktop)
-super + {ctrl + Tab,s}
-	bspc {node,desktop} -f last
+# focus last node
+super + ctrl + Tab
+	bspc node -f last
 
 # focus brother/parent
 super + {_,ctrl + }a
@@ -135,8 +142,17 @@ super + {_,ctrl + ,shift + }r
 #
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'; desktopalert
+
+super + shift + {1-9,0}
+	bspc node -d '^{1-9,0}'
+
+super + {z,x,s}
+	bspc desktop -f {prev,next,last}; desktopalert
+
+super + shift + {z,x,s}
+	bspc node -d {prev,next,last} --follow; desktopalert
 
 #
 # preselect
@@ -158,8 +174,14 @@ super + alt + space
 super + ctrl + {h,j,k,l}
 	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
 
+super + ctrl + KP_{Left,Down,Up,Right}
+	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+
 # resize left/top
 super + ctrl + shift + {h,j,k,l}
+	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
+
+super + ctrl + shift + KP_{Left,Down,Up,Right}
 	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
 # floating window

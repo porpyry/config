@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;(setq user-full-name "John Doe"
@@ -28,7 +27,7 @@
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
-(setq doom-font (font-spec :family "JetBrains Mono" :size 18 :weight 'semi-light)
+(setq doom-font (font-spec :family "JetBrains Mono" :size 18)
       doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 18))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and

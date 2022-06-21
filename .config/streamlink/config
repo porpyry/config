@@ -1,3 +1,1 @@
-player=vlc --file-caching 5000 --network-caching 5000
-title="{author} - {title}"
-player-no-close
+player=vlc
