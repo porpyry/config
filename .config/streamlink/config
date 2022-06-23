@@ -1,1 +1,4 @@
-player=vlc
+player=mpv --cache=yes --demuxer-max-bytes=2048KiB --hwdec=auto
+title="{author} - {title}"
+twitch-low-latency
+player-no-close

@@ -1,3 +1,3 @@
 #!/bin/sh
-dunstify -a datealert -u low -t 1500 -r 9998 "$(date +'%Y-%-m-%-d (%^a)')"
-echo "$(date +'%Y-%m-%d (%^a)')" | tr -d '\n' | xclip -selection clipboard
+dunstify -a datealert -u low -t 1500 -r 9998 "$(date +'%-m.%-d %a')"
+echo "$(date +'[%Y-%m-%d %a]')" | tr -d '\n' | xclip -selection clipboard

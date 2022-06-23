@@ -11,12 +11,12 @@ super + ctrl + shift + r
 	reboot
 
 # terminal emulator
-super + {Return,@space}
-	{_,bspc rule -a \* -o state=floating &&} alacritty
+super + Return
+	alacritty
 
 # program launcher
 super + q
-	dmenu_run
+	rofi -show drun
 
 # background image
 super + b
@@ -26,7 +26,6 @@ super + b
 super + n
 	brave --use-gl=desktop --enable-features=VaapiVideoDecoder --disable-features=UseChromeOSDirectVideoDecoder
 
-# browser (incognito)
 super + shift + n
 	brave --incognito
 
@@ -61,6 +60,10 @@ super + F11
 # screenshot
 Print
 	flameshot gui
+
+# float next window
+super + @space
+	bspc rule -a \* -o state=floating
 
 #
 # bspwm hotkeys
@@ -97,6 +100,9 @@ super + {t,y,g,f}
 
 super + shift + f
 	bspc node @brother -t \~fullscreen
+
+super + KP_Begin
+	bspc node -t \~floating
 
 # pin
 super + p
@@ -184,9 +190,18 @@ super + ctrl + shift + {h,j,k,l}
 super + ctrl + shift + KP_{Left,Down,Up,Right}
 	bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
-# floating window
+# move
 super + KP_{Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+	movewindow {left,down,up,right}
+
+super + shift + KP_{Left,Down,Up,Right}
+	movewindow edge-{left,down,up,right}
+
+super + shift + KP_{Home,Prior,End,Next}
+	movewindow corner-{topleft,topright,bottomleft,bottomright}
+
+super + shift + KP_Begin
+	movewindow center
 
 # balance/equailize
 super + {ctrl,shift} + b

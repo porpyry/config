@@ -5,6 +5,7 @@ alias lsal="exa --group-directories-first -al"
 alias ll="exa --group-directories-first -al"
 alias tree="exa --tree"
 alias grep="grep --color=auto"
+alias mpv="mpv --hwdec=auto"
 
 alias free="free -h"
 alias df="df -h"

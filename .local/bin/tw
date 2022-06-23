@@ -1,0 +1,14 @@
+#!/bin/sh
+
+case "$1" in
+	w) channel=woowakgood   ;;
+	i) channel=vo_ine       ;;
+	j) channel=jingburger   ;;
+	l) channel=lilpaaaaaa   ;;
+	c) channel=cotton__123  ;;
+	g) channel=gosegugosegu ;;
+	v) channel=viichan6     ;;
+	*) exit 1               ;;
+esac
+
+streamlink "https://twitch.tv/$channel" best
