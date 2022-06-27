@@ -294,7 +294,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#222222"
     foreground = "#dddddd"
-    frame_color = "#dddddd"
+    frame_color = "#aaaaaa"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon

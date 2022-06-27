@@ -18,8 +18,14 @@ set splitbelow splitright
 "set virtualedit=all
 set wildmode=longest,list,full
 
-let g:airline_theme='base16'
-let g:airline_powerline_fonts=1
+let g:airline_theme='raven'
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+let g:airline_symbols.colnr = ' '
+let g:airline_symbols.linenr = ' '
+let g:airline_symbols.maxlinenr = ''
+"let g:airline_powerline_fonts=1
 colorscheme codedark
 set cursorline
 set cursorcolumn

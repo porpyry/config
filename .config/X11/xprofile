@@ -28,7 +28,7 @@ nimf &
 xinput set-prop "SYNA309F:00 06CB:CD0B Touchpad" "libinput Tapping Enabled" 1 &
 
 # background image
-feh --bg-fill --randomize ~/.wallpapers/* &
+feh --no-fehbg --bg-fill --randomize ~/.wallpapers/* &
 
 # tear-free
 xrandr --output eDP --set TearFree on &
@@ -37,12 +37,10 @@ xrandr --output eDP --set TearFree on &
 xsetroot -cursor_name left_ptr &
 
 # repeat rate
-xset r rate 180 30 &
+xset r rate 250 30 &
+
+# alert
+batteryalert &
 
 # numlock
 numlockx on &
-
-# alert
-datealert &
-timealert &
-batteryalert &

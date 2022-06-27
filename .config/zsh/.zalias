@@ -6,6 +6,7 @@ alias ll="exa --group-directories-first -al"
 alias tree="exa --tree"
 alias grep="grep --color=auto"
 alias mpv="mpv --hwdec=auto"
+alias wget="wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 
 alias free="free -h"
 alias df="df -h"

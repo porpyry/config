@@ -14,13 +14,16 @@ super + ctrl + shift + r
 super + Return
 	alacritty
 
+super + alt + @space
+	alacritty
+
 # program launcher
-super + q
-	rofi -show drun
+super + {_,shift + }q
+	rofi -show {drun,run} -theme sidebar
 
 # background image
 super + b
-	feh --bg-fill --randomize ~/.wallpapers/*
+	feh --no-fehbg --bg-fill --randomize ~/.wallpapers/*
 
 # browser
 super + n
@@ -56,6 +59,10 @@ super + {d,c,v}
 # wireless
 super + F11
 	bspc rule -a \* -o state=floating && alacritty -e nmtui-connect
+
+# pulsemixer
+super + F10
+	bspc rule -a \* -o state=floating && alacritty -e pulsemixer
 
 # screenshot
 Print
