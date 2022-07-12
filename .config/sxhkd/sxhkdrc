@@ -14,11 +14,15 @@ super + ctrl + shift + r
 super + Return
 	alacritty
 
-super + alt + @space
+super + shift + Return
+	cool-retro-term
+
+super + space
+	bspc rule -a \* -o state=floating; \
 	alacritty
 
 # program launcher
-super + {_,shift + }q
+super + {shift,ctrl} + q
 	rofi -show {drun,run} -theme sidebar
 
 # background image
@@ -27,7 +31,7 @@ super + b
 
 # browser
 super + n
-	brave --use-gl=desktop --enable-features=VaapiVideoDecoder --disable-features=UseChromeOSDirectVideoDecoder
+	brave
 
 super + shift + n
 	brave --incognito
@@ -39,6 +43,14 @@ super + e
 # file manager
 super + shift + e
 	pcmanfm
+
+# alert
+super + d; {d,c,v}
+	{date,time,battery}alert
+
+# pulsemixer, wireless
+super + F{10,11}
+	bspc rule -a \* -o state=floating && alacritty -e {pulsemixer,nmtui-connect}
 
 # Volume
 XF86Audio{Mute,LowerVolume,RaiseVolume}
@@ -52,25 +64,9 @@ XF86MonBrightness{Down,Up}
 XF86Sleep
 	xset dpms force off
 
-# alert
-super + {d,c,v}
-	{date,time,battery}alert
-
-# wireless
-super + F11
-	bspc rule -a \* -o state=floating && alacritty -e nmtui-connect
-
-# pulsemixer
-super + F10
-	bspc rule -a \* -o state=floating && alacritty -e pulsemixer
-
 # screenshot
 Print
 	flameshot gui
-
-# float next window
-super + @space
-	bspc rule -a \* -o state=floating
 
 #
 # bspwm hotkeys
@@ -89,13 +85,12 @@ super + Escape
 super + {_,ctrl + shift +}w
 	bspc node -{c,k}
 
-# close brother
 super + shift + w
 	bspc node @brother -c
 
-# monocle
-super + m
-	bspc desktop -l next
+# float next window
+super + alt + space
+	bspc rule -a \* -o state=floating
 
 #
 # state/flags
@@ -105,15 +100,21 @@ super + m
 super + {t,y,g,f}
 	bspc node -t {\~tiled,\~pseudo_tiled,\~floating,\~fullscreen}
 
+# fullscreen brother
 super + shift + f
 	bspc node @brother -t \~fullscreen
 
+# toggle float (keypad)
 super + KP_Begin
 	bspc node -t \~floating
 
 # pin
 super + p
 	bspc node -g sticky
+
+# monocle
+super + m
+	bspc desktop -l next
 
 #
 # focus/swap
@@ -127,24 +128,19 @@ super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus cycle
-super + {_,shift + }Tab
-	bspc node -f {next,prev}.local.!hidden.window
+super + {Tab,q,a}
+	bspc node -f {next,prev,last}.local.!hidden.window
 
-# focus last node
-super + ctrl + Tab
-	bspc node -f last
+super + {shift,ctrl,shift + ctrl} + Tab
+	bspc node -f {next,prev,last}; desktopalert
 
-# focus brother/parent
-super + {_,ctrl + }a
-	bspc node -f @{brother,parent}
+# focus/swap brother
+super + {c,grave}
+	bspc node -{f,s} @brother
 
-# swap brother
-super + grave
-	bspc node -s @brother
-
-# move to uncle
-super + shift + a
-	bspc node -n @parent/brother
+# move brother
+super + {shift,ctrl} + a
+	bspc node -n @parent/brother{_,; bspc node -s @brother}
 
 # rotate
 super + {_,ctrl + ,shift + }r
@@ -159,13 +155,13 @@ super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'; desktopalert
 
 super + shift + {1-9,0}
-	bspc node -d '^{1-9,0}'
+	bspc node -d '^{1-9,10}'
 
-super + {z,x,s}
-	bspc desktop -f {prev,next,last}; desktopalert
+super + {z,minus,x,equal,s,BackSpace}
+	bspc desktop -f {prev,prev,next,next,last,last}; desktopalert
 
-super + shift + {z,x,s}
-	bspc node -d {prev,next,last} --follow; desktopalert
+super + shift + {z,minus,x,equal,s,BackSpace}
+	bspc node -d {prev,prev,next,next,last,last} --follow; desktopalert
 
 #
 # preselect
@@ -176,7 +172,7 @@ super + alt + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # cancel the preselection for the focused desktop
-super + alt + space
+super + alt + Escape
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
@@ -211,5 +207,5 @@ super + shift + KP_Begin
 	movewindow center
 
 # balance/equailize
-super + {ctrl,shift} + b
+super + {shift,ctrl} + b
 	bspc node @/ -{E,B}

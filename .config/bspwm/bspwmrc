@@ -2,7 +2,7 @@
 
 sxhkd &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III "III I" "III II" "III III" "III III I" "III III II" "III III III" O
 
 bspc config border_width 0
 bspc config window_gap   0

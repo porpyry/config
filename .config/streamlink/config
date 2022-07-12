@@ -1,4 +1,4 @@
-player=mpv --cache=yes --demuxer-max-bytes=2048KiB --hwdec=auto
+player=mpv
 title="{author} - {title}"
 twitch-low-latency
 player-no-close

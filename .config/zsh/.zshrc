@@ -6,8 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-[[ -f $XDG_CONFIG_HOME/zsh/.zalias ]] && . $XDG_CONFIG_HOME/zsh/.zalias
-[[ -f $XDG_CONFIG_HOME/zsh/.zfunction ]] && . $XDG_CONFIG_HOME/zsh/.zfunction
+[[ -f $XDG_CONFIG_HOME/zsh/alias ]] && . $XDG_CONFIG_HOME/zsh/alias
+[[ -f $XDG_CONFIG_HOME/zsh/function ]] && . $XDG_CONFIG_HOME/zsh/function
 
 # The following lines were added by compinstall
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -26,4 +26,4 @@ autoload -U colors && colors
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $XDG_CONFIG_HOME/zsh/.p10k.zsh ]] || source $XDG_CONFIG_HOME/zsh/.p10k.zsh
+[[ ! -f $XDG_CONFIG_HOME/zsh/p10k.zsh ]] || source $XDG_CONFIG_HOME/zsh/p10k.zsh

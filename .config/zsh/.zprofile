@@ -1,5 +1,14 @@
 #!/bin/sh
 
+#/etc/zsh/zshenv
+#export XDG_CONFIG_HOME=$HOME/.config
+#export XDG_CACHE_HOME=$HOME/.cache
+#export XDG_DATA_HOME=$HOME/.local/share
+#export XDG_STATE_HOME=$HOME/.local/state
+#export ZDOTDIR=$HOME/.config/zsh
+#export PATH=$HOME/.local/bin:$PATH
+#export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
+
 export GRIPHOME=$XDG_CONFIG_HOME/grip
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export LESSHISTFILE=$XDG_CACHE_HOME/less/history

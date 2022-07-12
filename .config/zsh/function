@@ -9,6 +9,7 @@ tw () {
 	esac
 	streamlink "https://twitch.tv/$channel" "$quality" & disown
 }
+alias twq="brave \"https://isedol.xyz\" &"
 alias tww="tw woowakgood"
 alias twi="tw vo_ine"
 alias twj="tw jingburger"
@@ -18,8 +19,3 @@ alias twg="tw gosegugosegu"
 alias twv="tw viichan6"
 alias tw1="tw 111roentgenium"
 alias twc="tw chunyangkr"
-
-clip () {
-	mkdir -p clips
-	ffmpeg -c copy -i "$1" -ss "$2" -to "$3" "clips/$4"
-}

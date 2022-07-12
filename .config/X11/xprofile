@@ -4,7 +4,7 @@
 ### DAEMONS ###
 
 # compositor
-picom -b --animations --animation-for-open-window zoom --animation-stiffness 25 &
+#picom -b --animations --animation-for-open-window zoom --animation-stiffness 25 &
 
 # rendering
 systemctl --user start xsettingsd &
